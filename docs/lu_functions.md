@@ -81,6 +81,34 @@ lu_Get ( "tbl.d.f" )
 reurns json string [1,"dddd",3]
 ```
 
+## lu_DoFile
+
+## lu_RegisterLuaFunction
+
+## lu_GetAsContainer
+
+## lu_Restart
+
+## lu_LuaStateNew
+
+## lu_LuaStateClose
+
+## lu_GetLuaStateID
+
+## lu_SetLuaStateActive
+
+## lu_GetFromState
+
+## lu_SetToState
+
+## lu_GetAsContainerFromState
+
+## lu_Status
+
+
+
+
+
   
 
 
