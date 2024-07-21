@@ -53,7 +53,7 @@ One of the most exciting aspects of LuaToFM is its ability to leverage the vast 
 
 By integrating these and other Lua packages with LuaToFM, developers gain access to a vast array of functionality that can be seamlessly incorporated into their FileMaker solutions. This opens up new possibilities for data processing, automation, integration, and more, ultimately enhancing the capabilities and efficiency of FileMaker applications.
 
-#### Please read doumentations for details indormation
+#### Please read [documentations](https://github.com/OdonataTech/LuaToFM/tree/main/docs) for details indormation
 
 
 
