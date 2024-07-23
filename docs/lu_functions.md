@@ -180,16 +180,42 @@ lu_Restart
 ```
 
 ## lu_LuaStateNew
+Creates and make as active for current user new Lua state. Notes, the previous states don't deleted and stay in memory
 #### Format
+lu_LuaStateNew
 #### Parameters
+No any parameters
 #### Result
+The ID of created state. It is recommended to save this ID for future use.
 #### Examples
-
+```
+lu_LuaStateNew
+returns
+0x382e36c08
+```
 ## lu_LuaStateClose
+Close (delete) Lua state specified by ID
 #### Format
+lu_LuaStateClose( lua_state_id )
 #### Parameters
+lua_state_id - valid ID of Lua state
 #### Result
+on success returns three rows
+OK
+lua_state_id_closed of closed
+lua_state_id_current current state
+
+on error
+ERROR
+lua_state_id not found
 #### Examples
+```
+lu_LuaStateClose( "0x382e36c08" )
+returns
+OK
+0x382e36c08 closed
+0x355d69408 current state
+```
 
 ## lu_GetLuaStateID
 #### Format
