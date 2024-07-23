@@ -148,16 +148,36 @@ lu_RegisterLuaFunction( "my_sum( a { ; ... } )" ; "my sum lua function" )
 ```
 
 ## lu_GetAsContainer
+Gets binary data from Lua variable and stores in FileMaker container as file
 #### Format
+lu_GetAsContainer ( lua_variable_name {; filename; filetype ; pixelsWidth; pixelsHeight } )
 #### Parameters
+lua_variable_name - the global Lua variable, should contain binary representation of file
+filename - the name of file
+filetype - type of file. Supported 'png', 'jpg', 'eps', 'gif', 'bmp', 'pdf'. For all other case leave this parameters empty.
+pixelsWidth - with in pixels of image 
+pixelsHeight - height in pixels of image 
 #### Result
+File to store in FileMaker container
 #### Examples
+```
+lu_GetAsContainer ( "png_qr_data" ; "qrcodeTEST.png"; "png" )
+
+Here png_qr_data is Lua variable with binary data of png file
+```
 
 ## lu_Restart
+Complete restart Lua environment. All Lua states and data will be delete, the memory will be cleared
 #### Format
+lu_Restart
 #### Parameters
+No any parameters
 #### Result
+Lua restarted. All state and variables was clear.
 #### Examples
+```
+lu_Restart
+```
 
 ## lu_LuaStateNew
 #### Format
