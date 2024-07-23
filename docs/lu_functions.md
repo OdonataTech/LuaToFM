@@ -1,6 +1,6 @@
 
 ## lu_Evaluate
-Evaluate any valid text as lua code
+Evaluate any valid text as Lua code
 #### Format
 lu_Evaluate ( luacode )
 #### Parameters
@@ -29,11 +29,11 @@ ERROR
 ```
 
 ## lu_Get
-Get global lua variable. Also can be used for geting lua function result or simle lua expression
+Get global lua variable. Also can be used for geting Lua function result or simle Lua expression
 #### Format
 lu_Get ( lua_variable_name )
 #### Parameters
-lua_variable_name - the name of any Lua global variable, function or lua expression
+lua_variable_name - the name of any Lua global variable, function or Lua expression
 ### Examples
 ```
 lu_Get ( "a" ) 
@@ -54,9 +54,9 @@ lu_Get ( "string.upper ( 'Hello FileMaker' )" )
 ```
 #### The type of results:
 - Returns 'nil' if returned lua variable is not exist
-- Returns variable as FileMaker number if returned lua variable is number
-- Returns variable as Fileamker text if returned lua variable is string
-- Returns variable as JSON string if returned lua variable is lua table
+- Returns variable as FileMaker number if returned Lua variable is number
+- Returns variable as Fileamker text if returned Lua variable is string
+- Returns variable as JSON string if returned Lua variable is lua table
 - Returns variable as Fileamker text for all other valid case
 
 ``` 
@@ -118,13 +118,34 @@ ERROR
 cannot open /Users/arcady/Documents/testTTT.lua: No such file or directory
 ```
 
-
-
 ## lu_RegisterLuaFunction
+Registrates Lua function as FileMaker function. The function does not have to exist in memory at the moment and can be declared later and changed at any time.
 #### Format
+lu_RegisterLuaFunction( function_prototype ; function_description )
 #### Parameters
+function_prototype - the prototype of the function including variable names. Optional variables may be specified. The function may also be specified as containing an unspecified number of variables, but not less than one.
+function_description - text description of the function. Will be displayed in Description field of 'Edit Expression'' Filemaker window
 #### Result
+func_name registred, where func_name is name of registrated function, or error
 #### Examples
+```
+lu_RegisterLuaFunction( "my_func( a ; b )" ; "my first register lua function" )
+returns
+my_func registred.
+```
+```
+lu_Evaluate ( "
+   function my_sum( a, ... ) 
+      local sum = a
+      for i, x in ipairs{...} do
+        sum = sum + x
+      end     
+      return sum
+   end 
+" )
+lu_RegisterLuaFunction( "my_sum( a { ; ... } )" ; "my sum lua function" )
+
+```
 
 ## lu_GetAsContainer
 #### Format
