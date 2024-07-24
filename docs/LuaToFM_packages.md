@@ -129,6 +129,57 @@ OK
 ]
 ```
 
+```
+lu_Evaluate ( "
+   cnt, res = LuaToFM.executeFMSQL ( {
+      file = 'Ltest',
+      query = 'SELECT id, test_text, timestamp_create FROM LTest WHERE id > ? ',
+      params = {20},
+      types = 'dsd',
+      keys_type = 'names' ,
+      fields_names = { 'id', 'test_text', 'timestamp_create'},
+      table_type = 'columns'
+})
+" ) &  ¶ & 
+JSONFormatElements ( lu_Get ( "res" ) )
 
+returns
+OK
+{
+	"id" : [ 39, 40, 41, 42, 43 ],
+	"test_text" : 
+	[
+		"Some text",
+		"Test 1",
+		"Test 2",
+		"Test 3",
+		""
+	],
+	"timestamp_create" : [ 63853813298, 63853813305, 63853904090, 63853904094, 63853904429 ]
+}
+```
 
+LuaToFM.executeFMSQL can be used not only for SELECT but also for other types of queries (INSERT, UPDATE)
+
+```
+lu_Evaluate ( "
+   err = LuaToFM.executeFMSQL ( {
+      file = 'Ltest',
+      query = 'INSERT INTO LTest (test_text, test_num) VALUES ( ? , ? ) ',
+      params = {'Тест FM', 42},
+})
+" )
+
+err = 0 if FileMaker completed the request successfully
+```
+
+```
+lu_Evaluate ( "
+   err = LuaToFM.executeFMSQL ( {
+      file = 'Ltest',
+      query = 'UPDATE LTest SET test_text = ? , test_num = ? WHERE id = 38 ',
+      params = {'I changed it', 29},
+})
+" )
+```
 
