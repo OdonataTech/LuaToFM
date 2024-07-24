@@ -48,5 +48,87 @@ lu_Evaluate ( "
 lu_Get("str")
 ```
 
+## LuaToFM package to interact with FileMaker from Lua code
+
+### LuaToFM.setFMvariable( var_name , var_value)
+Stores a value in the FileMaker global variable like $$
+
+```
+lu_Evaluate ( "
+    LuaToFM.setFMvariable( 'luaVar' , package.path )
+ ")
+
+//in FileMaker a variable $$luaVar will appear with the value package.path
+```
+
+### fmEvaluate( fm_expression )
+Actually calls FileMaker's Evaluate function and returns its calculated value to a lua variable
+```
+lu_Evaluate ( "
+   str = LuaToFM.fmEvaluate( 'Get(TemporaryPath)' )
+" ) 
+```
+
+## fmPerfomScript( fm_file_name, script_name, script_parameter, script_control )
+Call FileMaker script from Lua code
+
+Returns 0 on success. The result of script is not returned.
+
+script_control can be seated to the 0,1,2,3 (Halt, Exit, Resume, Pause )
+```
+lu_Evaluate ( " 
+   run  = LuaToFM.fmPerfomScript( 'LTest' , 'test_from_lua', '1' ,  3  ) 
+" ) 
+```
+
+## ExecuteFMSQL ( SQL_parameters_table )
+Calls a SQL query on a FileMaker file from lua code
+
+For a SELECT query, it returns two values ​​- the number of records and the generated Lua table as the query result
+```
+cnt, res = LuaToFM.executeFMSQL ( {
+      file = 'Ltest',
+      query = 'SELECT id, test_text FROM LTest WHERE id > 26 '
+})
+```
+
+Required parameters:
+- file - FM file name
+- query - query text
+    
+Extra parameters:
+- params - table of transmitted parameters, fills in the ? signs in the request
+- types - a string of characters corresponding to the number of fields returned from the query, defining the type of the returned values. Two values ​​are supported: d and s. By default, the type is always s
+- keys type - defines the indexing type of the returned table, can take two values:
+  - numeric - by default, the resulting table has a numeric index
+  - names - the resulting table is indexed by the field name. The fields_names parameter must be specified
+- fields_names - a table of field names used for indexing by name.
+- table_type - defines the structure of the returned table
+  - rows - by default. The returned table is an array of rows
+  - columns  - Возвращаемая таблица - массив колонок
+ 
+Examples
+
+```
+lu_Evaluate ( "
+   cnt, res = LuaToFM.executeFMSQL ( {
+      file = 'Ltest',
+      query = 'SELECT id, test_text FROM LTest WHERE id > ? AND id < ? ',
+      params = { 39,  42 }
+})
+" ) &  ¶ & 
+lu_Get ( "cnt" )  & ¶ & 
+JSONFormatElements ( lu_Get ( "res" ) )
+
+returns
+OK
+2
+[
+	[ "40", "Test 1" ],
+	[ "41", "Test 2" ]
+]
+```
+
+
 
 
