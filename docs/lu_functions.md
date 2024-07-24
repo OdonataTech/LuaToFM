@@ -250,20 +250,51 @@ ERROR
 ```
 lu_SetLuaStateActive ( "0x355d69408" )
 returns
-lu_SetLuaStateActive ( "0x355d69408" )
+OK
+ Lua state address 0x355d69408 is active
 ```
 
 ## lu_GetFromState
+The full analog from lu_Get, but gets value from any Lua state, which specified by ID
 #### Format
+lu_GetFromState ( lua_variable_name ; lua_state_id )
 #### Parameters
+lua_variable_name - the name of any Lua global variable, function or Lua expression
+lua_state_id - ID of one from existed Lua states
 #### Result
+see lu_Get description
 #### Examples
+```
+lu_GetFromState ( "a" ; "0x355d69408" ) 
+returns value of variable 'a' if 'a' a is exist or 'nil' from Lua state with ID 0x355d69408
+```
 
 ## lu_SetToState
+The full anaog from lu_Evaluate but run Lua code in Lua state, which specified by ID
 #### Format
+lu_SetToState ( luacode ; lua_state_id )
 #### Parameters
+luacode - any valid Lua code
+lua_state_id - ID of one from existed Lua states
 #### Result
+- OK on succsses
+- two string, where first string is "ERROR" and second string is error description
 #### Examples
+```
+lu_SetToState ( " 
+    a = 2
+    b = 3
+    c = a + b 
+" ;
+"0x355d69408"
+)
+& ¶ & 
+lu_GetFromState ( "c" ; "0x355d69408" )
+
+returns
+OK
+5
+```
 
 ## lu_GetAsContainerFromState
 #### Format
