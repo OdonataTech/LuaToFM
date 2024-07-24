@@ -143,6 +143,7 @@ lu_Evaluate ( "
       return sum
    end 
 " )
+& ¶ & 
 lu_RegisterLuaFunction( "my_sum( a { ; ... } )" ; "my sum lua function" )
 
 ```
@@ -297,16 +298,62 @@ OK
 ```
 
 ## lu_GetAsContainerFromState
+The full analog from lu_GetAsContainer, but gets data from Lua state, which specified by ID
 #### Format
+lu_GetAsContainerFromState ( lua_variable_name ; lua_state_id {; filename; filetype ; pixelsWidth; pixelsHeight } )
 #### Parameters
+lua_variable_name - the global Lua variable, should contain binary representation of file
+lua_state_id - ID of one from existed Lua states
+filename - the name of file
+filetype - type of file. Supported 'png', 'jpg', 'eps', 'gif', 'bmp', 'pdf'. For all other case leave this parameters empty.
+pixelsWidth - with in pixels of image 
+pixelsHeight - height in pixels of image 
 #### Result
+File to store in FileMaker container
 #### Examples
+```
+lu_GetAsContainerFromState ( "png_qr_data" ; "0x355d69408" ; "qrcodeTEST.png"; "png" )
+
+Here png_qr_data is Lua variable with binary data of png file
+```
 
 ## lu_Status
+Service function of plugin. Gets informations about currents status of LuaToFM plugin - created Lua states, registrated functions and other.
 #### Format
+lu_Status
 #### Parameters
+No any parameters
 #### Result
+Information of currents status in JSON format
 #### Examples
+```
+JSONFormatElements ( lu_Status )
+
+returns
+{
+	"fmSessionMap" : 
+	[
+		{
+			"enviroment" : "0x118cc9fe0",
+			"luaState" : [ "0x15e3ef408", "0x15e814408" ],
+			"sessionID" : 1
+		}
+	],
+	"fmSystemPlatform" : 1,
+	"fmVersion" : 1963,
+	"luaFunctionsMap" : 
+	[
+		{
+			"name" : "my_sum",
+			"num" : 5000
+		}
+	],
+	"luaStateVector" : [ "0x15e3ef408", "0x15e814408" ],
+	"mainLuaState" : "0x15e3ef408",
+	"nextLuaFuctionsID" : 5001
+}
+Here 0x15e3ef408 is main Lua state, and 0x15e814408 is additional Lua state created by lu_LuaStateNew
+```
 
 
 
