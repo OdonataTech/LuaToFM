@@ -1,4 +1,6 @@
 
+# Basic functions
+
 ## lu_Evaluate
 Evaluate any valid text as Lua code
 #### Format
@@ -167,18 +169,7 @@ lu_GetAsContainer ( "png_qr_data" ; "qrcodeTEST.png"; "png" )
 Here png_qr_data is Lua variable with binary data of png file
 ```
 
-## lu_Restart
-Complete restart Lua environment. All Lua states and data will be delete, the memory will be cleared
-#### Format
-lu_Restart
-#### Parameters
-No any parameters
-#### Result
-Lua restarted. All state and variables was clear.
-#### Examples
-```
-lu_Restart
-```
+# Work with Lua states
 
 ## lu_LuaStateNew
 Creates and make as active for current user new Lua state. Notes, the previous states don't deleted and stay in memory
@@ -315,6 +306,21 @@ File to store in FileMaker container
 lu_GetAsContainerFromState ( "png_qr_data" ; "0x355d69408" ; "qrcodeTEST.png"; "png" )
 
 Here png_qr_data is Lua variable with binary data of png file
+```
+
+# Others
+
+## lu_Restart
+Complete restart Lua environment. All Lua states and data will be delete, the memory will be cleared
+#### Format
+lu_Restart
+#### Parameters
+No any parameters
+#### Result
+Lua restarted. All state and variables was clear.
+#### Examples
+```
+lu_Restart
 ```
 
 ## lu_Status
