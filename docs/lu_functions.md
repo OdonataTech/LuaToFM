@@ -218,16 +218,40 @@ OK
 ```
 
 ## lu_GetLuaStateID
+Gets ID of the current Lua state
 #### Format
+lu_GetLuaStateID
 #### Parameters
+No any parameters
 #### Result
+ID of current Lua state
 #### Examples
+```
+lu_GetLuaStateID
+rerurns
+0x355d69408
+```
 
 ## lu_SetLuaStateActive
+Sets Lua state specified in lua_state_id as current 
 #### Format
+lu_SetLuaStateActive ( lua_state_id )
 #### Parameters
+lua_state_id - ID of Lua state. Lua state with specified ID must be exist
 #### Result
+on success
+OK
+ Lua state address 0x355d69408 is active
+
+on error
+ERROR
+ Lua state address 111 is incorrect
 #### Examples
+```
+lu_SetLuaStateActive ( "0x355d69408" )
+returns
+lu_SetLuaStateActive ( "0x355d69408" )
+```
 
 ## lu_GetFromState
 #### Format
