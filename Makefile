@@ -28,7 +28,7 @@ MYCFLAGS=-DLUA_USE_MACOSX
 
 FMWRAP = ./Libraries/Mac/FMWrapper.framework/Versions/A/FMWrapper
 
-TARGET = LuaToFM.dylib
+TARGET = LuaToFM
 endif
 
 

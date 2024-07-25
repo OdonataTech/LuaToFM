@@ -22,7 +22,7 @@ using namespace std;
 #define PLUGIN_PREFIX "lu"        //    default is the first characters of the function name
 #define PLUGIN_ID "LUFM"        //   always must be four characters Plugin ID
 
-#define VERSION_STRING "1.0.4001" // also in xcode project build settings
+#define VERSION_STRING "1.0.5001" // also in xcode project build settings
 
 #define PLUGIN_DESCRIPTION_STRING_ID PLUGIN_NAME " Version: " VERSION_STRING "\n\nEvaluate Lua language"
 

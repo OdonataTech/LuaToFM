@@ -169,12 +169,12 @@ const fmx::ptrtype Init ( FMX_ExternCallPtr /* pb */ )
 	
 	
 	
-	error = RegisterFunction ( LUA_Test,
-							  "Test ( sometext )" ,
-							  Test,
-							  "for testing"
-							  );
-	if ( kSPNoError != error ) { enable = (fmx::ptrtype)kDoNotEnable; }
+	// error = RegisterFunction ( LUA_Test,
+	// 						  "Test ( sometext )" ,
+	// 						  Test,
+	// 						  "for testing"
+	// 						  );
+	// if ( kSPNoError != error ) { enable = (fmx::ptrtype)kDoNotEnable; }
 
 
 	return enable;
