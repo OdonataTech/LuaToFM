@@ -6,7 +6,7 @@ Evaluate any valid text as Lua code
 #### Format
 lu_Evaluate ( luacode )
 #### Parameters
-luacode - any valid Lua code
+- luacode - any valid Lua code
 #### Result
 - OK on succsses
 - two string, where first string is "ERROR" and second string is error description
@@ -35,7 +35,7 @@ Get global lua variable. Also can be used for geting Lua function result or siml
 #### Format
 lu_Get ( lua_variable_name )
 #### Parameters
-lua_variable_name - the name of any Lua global variable, function or Lua expression
+- lua_variable_name - the name of any Lua global variable, function or Lua expression
 ### Examples
 ```
 lu_Get ( "a" ) 
@@ -97,8 +97,8 @@ Load and execute .lua file
 #### Format
 lu_DoFile( filepath { ; convert_path_flag } )
 #### Parameters
-filepath - full path to .lua file
-convert_path_flag - set flag to convert path from Filemaker format to format of operating system (work only FileMaker 19.0 and above). If flag don't seated the function will be wait file path in current OS format
+- filepath - full path to .lua file
+- convert_path_flag - set flag to convert path from Filemaker format to format of operating system (work only FileMaker 19.0 and above). If flag don't seated the function will be wait file path in current OS format
 #### Result
 - OK and filepath in OS format on succsses
 - two string, where first string is "ERROR" and second string is error description
@@ -125,8 +125,8 @@ Registrates Lua function as FileMaker function. The function does not have to ex
 #### Format
 lu_RegisterLuaFunction( function_prototype ; function_description )
 #### Parameters
-function_prototype - the prototype of the function including variable names. Optional variables may be specified. The function may also be specified as containing an unspecified number of variables, but not less than one.
-function_description - text description of the function. Will be displayed in Description field of 'Edit Expression'' Filemaker window
+- function_prototype - the prototype of the function including variable names. Optional variables may be specified. The function may also be specified as containing an unspecified number of variables, but not less than one.
+- function_description - text description of the function. Will be displayed in Description field of 'Edit Expression'' Filemaker window
 #### Result
 func_name registred, where func_name is name of registrated function, or error
 #### Examples
@@ -155,11 +155,11 @@ Gets binary data from Lua variable and stores in FileMaker container as file
 #### Format
 lu_GetAsContainer ( lua_variable_name {; filename; filetype ; pixelsWidth; pixelsHeight } )
 #### Parameters
-lua_variable_name - the global Lua variable, should contain binary representation of file
-filename - the name of file
-filetype - type of file. Supported 'png', 'jpg', 'eps', 'gif', 'bmp', 'pdf'. For all other case leave this parameters empty.
-pixelsWidth - with in pixels of image 
-pixelsHeight - height in pixels of image 
+- lua_variable_name - the global Lua variable, should contain binary representation of file
+- filename - the name of file
+- filetype - type of file. Supported 'png', 'jpg', 'eps', 'gif', 'bmp', 'pdf'. For all other case leave this parameters empty.
+- pixelsWidth - with in pixels of image 
+- pixelsHeight - height in pixels of image 
 #### Result
 File to store in FileMaker container
 #### Examples
@@ -190,7 +190,7 @@ Close (delete) Lua state specified by ID
 #### Format
 lu_LuaStateClose( lua_state_id )
 #### Parameters
-lua_state_id - valid ID of Lua state
+- lua_state_id - valid ID of Lua state
 #### Result
 on success returns three rows
 OK
@@ -214,7 +214,7 @@ Gets ID of the current Lua state
 #### Format
 lu_GetLuaStateID
 #### Parameters
-No any parameters
+- No any parameters
 #### Result
 ID of current Lua state
 #### Examples
@@ -229,7 +229,7 @@ Sets Lua state specified in lua_state_id as current
 #### Format
 lu_SetLuaStateActive ( lua_state_id )
 #### Parameters
-lua_state_id - ID of Lua state. Lua state with specified ID must be exist
+- lua_state_id - ID of Lua state. Lua state with specified ID must be exist
 #### Result
 on success
 OK
@@ -251,8 +251,8 @@ The full analog from lu_Get, but gets value from any Lua state, which specified 
 #### Format
 lu_GetFromState ( lua_variable_name ; lua_state_id )
 #### Parameters
-lua_variable_name - the name of any Lua global variable, function or Lua expression
-lua_state_id - ID of one from existed Lua states
+- lua_variable_name - the name of any Lua global variable, function or Lua expression
+- lua_state_id - ID of one from existed Lua states
 #### Result
 see lu_Get description
 #### Examples
@@ -266,8 +266,8 @@ The full anaog from lu_Evaluate but run Lua code in Lua state, which specified b
 #### Format
 lu_SetToState ( luacode ; lua_state_id )
 #### Parameters
-luacode - any valid Lua code
-lua_state_id - ID of one from existed Lua states
+- luacode - any valid Lua code
+- lua_state_id - ID of one from existed Lua states
 #### Result
 - OK on succsses
 - two string, where first string is "ERROR" and second string is error description
@@ -293,12 +293,12 @@ The full analog from lu_GetAsContainer, but gets data from Lua state, which spec
 #### Format
 lu_GetAsContainerFromState ( lua_variable_name ; lua_state_id {; filename; filetype ; pixelsWidth; pixelsHeight } )
 #### Parameters
-lua_variable_name - the global Lua variable, should contain binary representation of file
-lua_state_id - ID of one from existed Lua states
-filename - the name of file
-filetype - type of file. Supported 'png', 'jpg', 'eps', 'gif', 'bmp', 'pdf'. For all other case leave this parameters empty.
-pixelsWidth - with in pixels of image 
-pixelsHeight - height in pixels of image 
+- lua_variable_name - the global Lua variable, should contain binary representation of file
+- lua_state_id - ID of one from existed Lua states
+- filename - the name of file
+- filetype - type of file. Supported 'png', 'jpg', 'eps', 'gif', 'bmp', 'pdf'. For all other case leave this parameters empty.
+- pixelsWidth - with in pixels of image 
+- pixelsHeight - height in pixels of image 
 #### Result
 File to store in FileMaker container
 #### Examples
